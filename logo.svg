@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="36" viewBox="0 0 180 36" role="img" aria-label="Jupiter Cyber Defence">
+  <rect width="36" height="36" rx="8" fill="#6ee7ff"/>
+  <path d="M12 23c6 5 12 5 18 0" stroke="#0b1020" stroke-width="2" fill="none"/>
+  <text x="46" y="24" font-family="Segoe UI, Arial" font-size="18" fill="#e5e7eb">Jupiter Cyber Defence</text>
+</svg>
