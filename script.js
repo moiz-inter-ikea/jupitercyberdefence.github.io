@@ -45,7 +45,9 @@ if (yearEl) {
 }
 
 const pricingCountry = document.getElementById("pricingCountry");
-const packagePriceEls = document.querySelectorAll(".package-price");
+const priceLite = document.getElementById("priceLite");
+const priceCore = document.getElementById("priceCore");
+const pricePremium = document.getElementById("pricePremium");
 
 const pricingByCountry = {
   oman: {
@@ -69,17 +71,23 @@ const updatePricing = (countryCode) => {
   const selected = pricingByCountry[countryCode];
   if (!selected) return;
 
-  packagePriceEls.forEach((priceEl) => {
-    const plan = priceEl.getAttribute("data-plan");
-    if (!plan || !selected[plan]) return;
-    priceEl.textContent = selected[plan];
-  });
+  if (priceLite) {
+    priceLite.textContent = selected.lite;
+  }
+  if (priceCore) {
+    priceCore.textContent = selected.core;
+  }
+  if (pricePremium) {
+    pricePremium.textContent = selected.premium;
+  }
 };
 
 if (pricingCountry instanceof HTMLSelectElement) {
   updatePricing(pricingCountry.value);
-  pricingCountry.addEventListener("change", () => {
-    updatePricing(pricingCountry.value);
+  ["change", "input"].forEach((eventName) => {
+    pricingCountry.addEventListener(eventName, () => {
+      updatePricing(pricingCountry.value);
+    });
   });
 }
 
