@@ -44,12 +44,53 @@ if (yearEl) {
   yearEl.textContent = String(new Date().getFullYear());
 }
 
+const pricingCountry = document.getElementById("pricingCountry");
+const packagePriceEls = document.querySelectorAll(".package-price");
+
+const pricingByCountry = {
+  oman: {
+    lite: "OMR 150",
+    core: "OMR 600 – 900",
+    premium: "OMR 1,000 – 1,500",
+  },
+  uae: {
+    lite: "AED 300 – 500",
+    core: "AED 2,000 – 4,000",
+    premium: "AED 4,500 – 7,500",
+  },
+  ksa: {
+    lite: "SAR 300 – 500",
+    core: "SAR 2,000 – 5,000",
+    premium: "SAR 6,000 – 12,000",
+  },
+};
+
+const updatePricing = (countryCode) => {
+  const selected = pricingByCountry[countryCode];
+  if (!selected) return;
+
+  packagePriceEls.forEach((priceEl) => {
+    const plan = priceEl.getAttribute("data-plan");
+    if (!plan || !selected[plan]) return;
+    priceEl.textContent = selected[plan];
+  });
+};
+
+if (pricingCountry instanceof HTMLSelectElement) {
+  updatePricing(pricingCountry.value);
+  pricingCountry.addEventListener("change", () => {
+    updatePricing(pricingCountry.value);
+  });
+}
+
 const form = document.getElementById("contactForm");
 const statusEl = document.getElementById("formStatus");
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 if (form instanceof HTMLFormElement && statusEl) {
   form.addEventListener("submit", (event) => {
     const requiredFields = form.querySelectorAll("[required]");
+    const emailField = form.querySelector('input[name="email"]');
     let hasError = false;
 
     requiredFields.forEach((field) => {
@@ -62,6 +103,14 @@ if (form instanceof HTMLFormElement && statusEl) {
     if (hasError) {
       event.preventDefault();
       statusEl.textContent = "Please fill all required fields.";
+      return;
+    }
+
+    if (emailField instanceof HTMLInputElement && !emailPattern.test(emailField.value.trim())) {
+      event.preventDefault();
+      statusEl.textContent = "Please enter a valid work email.";
+      alert("Wrong email format. Please enter a valid email address.");
+      emailField.focus();
       return;
     }
 

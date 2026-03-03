@@ -131,16 +131,67 @@
 
     <section id="pricing" class="section alt">
       <div class="container pricing">
-        <h2>Simple pricing</h2>
-        <div class="price-card">
-          <p class="plan">Professional</p>
-          <p class="price">From €1,490<span>/month</span></p>
-          <ul>
-            <li>Security monitoring dashboard</li>
-            <li>Compliance readiness mapping</li>
-            <li>Monthly risk and action report</li>
-          </ul>
-          <a class="btn" href="#contact">Talk to us</a>
+        <h2>Packages & pricing</h2>
+        <div class="pricing-controls">
+          <label for="pricingCountry">Select country</label>
+          <select id="pricingCountry" name="pricingCountry" aria-label="Select country for pricing">
+            <option value="oman" selected>Oman</option>
+            <option value="uae">UAE</option>
+            <option value="ksa">KSA</option>
+          </select>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <p class="plan">Package 1</p>
+            <h3>Lite Security Snapshot <span class="plan-tag">Starter</span></h3>
+            <p class="price package-price" data-plan="lite">OMR 150</p>
+            <ul>
+              <li>External attack surface snapshot</li>
+              <li>Top 5 risk items (simple)</li>
+              <li>Email security check (SPF/DKIM/DMARC)</li>
+              <li>Mini report (3–4 pages)</li>
+              <li>15-minute summary call</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact">Book demo</a>
+          </article>
+
+          <article class="price-card">
+            <p class="plan">Package 2</p>
+            <h3>Core Security Audit <span class="plan-tag">Most Purchased</span></h3>
+            <p class="price package-price" data-plan="core">OMR 600 – 900</p>
+            <p class="price-note">Price depends on number of assets/domains.</p>
+            <ul>
+              <li>External attack surface assessment</li>
+              <li>Website/App light-DAST scan</li>
+              <li>Access/MFA review</li>
+              <li>Cloud readiness (light)</li>
+              <li>Backup & ransomware readiness review</li>
+              <li>PDPL Security Mini-Map (non-legal)</li>
+              <li>Heatmap (Red/Amber/Green)</li>
+              <li>30-day action plan</li>
+              <li>Live walkthrough (45 min)</li>
+            </ul>
+            <p class="target-clients"><strong>Target clients:</strong> Clinics, logistics SMEs, IT firms, training centers, small SaaS.</p>
+            <a class="btn" href="#contact">Book demo</a>
+          </article>
+
+          <article class="price-card">
+            <p class="plan">Package 3</p>
+            <h3>Premium Security & PDPL Readiness</h3>
+            <p class="price package-price" data-plan="premium">OMR 1,000 – 1,500</p>
+            <p class="price-note">Includes everything in Core plus:</p>
+            <ul>
+              <li>Full cloud security posture review (AWS/Azure/GCP)</li>
+              <li>Vendor/third-party access review</li>
+              <li>Incident readiness review</li>
+              <li>Restore test validation</li>
+              <li>60-day action plan</li>
+              <li>Priority email support for 30 days</li>
+            </ul>
+            <p class="target-clients"><strong>Target clients:</strong> Mid-size orgs, IT/MSPs, companies with external audits/vendors.</p>
+            <a class="btn" href="#contact">Book demo</a>
+          </article>
         </div>
       </div>
     </section>
