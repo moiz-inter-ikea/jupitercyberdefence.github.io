@@ -1,47 +1,70 @@
-// Mobile menu toggle
-const menuToggle = document.getElementById('menuToggle');
-const nav = document.getElementById('nav');
+const menuToggle = document.getElementById("menuToggle");
+const nav = document.getElementById("nav");
+
+const closeMobileNav = () => {
+  if (!nav || !menuToggle) return;
+  nav.style.display = "none";
+  menuToggle.setAttribute("aria-expanded", "false");
+};
+
 if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    const open = nav.style.display === 'block';
-    nav.style.display = open ? 'none' : 'block';
-    menuToggle.setAttribute('aria-expanded', (!open).toString());
+  menuToggle.addEventListener("click", () => {
+    const isOpen = nav.style.display === "block";
+    nav.style.display = isOpen ? "none" : "block";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) {
+      nav.style.display = "";
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
   });
 }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (window.innerWidth < 720 && nav) nav.style.display = 'none';
-    }
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", (event) => {
+    const targetId = anchor.getAttribute("href");
+    if (!targetId || targetId === "#") return;
+
+    const section = document.querySelector(targetId);
+    if (!section) return;
+
+    event.preventDefault();
+    const headerHeight = document.querySelector(".site-header")?.offsetHeight || 0;
+    const y = section.getBoundingClientRect().top + window.scrollY - headerHeight - 8;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+    if (window.innerWidth <= 760) closeMobileNav();
   });
 });
 
-// Update footer year
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = String(new Date().getFullYear());
+}
 
-// Contact form UX (client-side)
-const form = document.getElementById('contactForm');
-const statusEl = document.getElementById('formStatus');
-if (form && statusEl) {
-  form.addEventListener('submit', async (e) => {
-    // simple inline validation
-    const required = form.querySelectorAll('[required]');
-    for (const field of required) {
+const form = document.getElementById("contactForm");
+const statusEl = document.getElementById("formStatus");
+
+if (form instanceof HTMLFormElement && statusEl) {
+  form.addEventListener("submit", (event) => {
+    const requiredFields = form.querySelectorAll("[required]");
+    let hasError = false;
+
+    requiredFields.forEach((field) => {
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
       if (!field.value.trim()) {
-        e.preventDefault();
-        statusEl.textContent = 'Please complete required fields.';
-        statusEl.style.color = '#fca5a5';
-        return;
+        hasError = true;
       }
+    });
+
+    if (hasError) {
+      event.preventDefault();
+      statusEl.textContent = "Please fill all required fields.";
+      return;
     }
-    statusEl.textContent = 'Sending…';
-    statusEl.style.color = '#9ca3af';
+
+    statusEl.textContent = "Sending your request...";
   });
 }
