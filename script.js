@@ -65,6 +65,11 @@ const pricingByCountry = {
     core: "SAR 2,000 – 5,000",
     premium: "SAR 6,000 – 12,000",
   },
+  eu: {
+    lite: "EUR 100 – 150",
+    core: "EUR 500 – 800",
+    premium: "EUR 1,000 – 1,500",
+  },
 };
 
 const updatePricing = (countryCode) => {
