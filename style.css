@@ -588,9 +588,9 @@ h2 {
 }
 
 .compliance-logo {
-  width: 24px;
-  height: 24px;
-  padding: 2px;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
   border-radius: 999px;
   object-fit: contain;
   border: 1px solid var(--line);
