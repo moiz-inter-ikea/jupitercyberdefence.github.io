@@ -427,6 +427,11 @@ h2 {
   margin-bottom: 10px;
 }
 
+.premium-title {
+  font-size: 16px;
+  white-space: nowrap;
+}
+
 .plan-tag {
   font-size: 11px;
   color: #cfdbfa;
@@ -449,6 +454,11 @@ h2 {
   margin: 8px 0 16px;
   font-size: 38px;
   font-weight: 800;
+}
+
+.premium-price {
+  font-size: 30px;
+  white-space: nowrap;
 }
 
 .price span {
