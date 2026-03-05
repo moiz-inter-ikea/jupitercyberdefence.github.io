@@ -73,7 +73,10 @@ const pricingByCountry = {
 };
 
 const updatePricing = (countryCode) => {
-  const selected = pricingByCountry[countryCode];
+  const normalizedCountryCode = String(countryCode ?? "")
+    .trim()
+    .toLowerCase();
+  const selected = pricingByCountry[normalizedCountryCode];
   if (!selected) return;
 
   if (priceLite) {

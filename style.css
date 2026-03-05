@@ -233,11 +233,11 @@ h2 {
 
 .panel-branding {
   width: 100%;
-  height: 120px;
+  height: 220px;
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 14px;
+  margin-bottom: 0;
 }
 
 .panel-head {
@@ -588,10 +588,11 @@ h2 {
 }
 
 .compliance-logo {
-  width: 64px;
-  height: 64px;
+  width: 24px;
+  height: 24px;
+  padding: 2px;
   border-radius: 999px;
-  object-fit: cover;
+  object-fit: contain;
   border: 1px solid var(--line);
   background: rgba(12, 20, 38, 0.75);
 }
