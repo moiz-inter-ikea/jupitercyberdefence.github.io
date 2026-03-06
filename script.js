@@ -51,9 +51,9 @@ const pricePremium = document.getElementById("pricePremium");
 
 const pricingByCountry = {
   oman: {
-    lite: "OMR 150",
-    core: "OMR 600 – 900",
-    premium: "OMR 1,000 – 1,500",
+    lite: "OMR 80 – 100",
+    core: "OMR 200 – 400",
+    premium: "OMR 500 – 1,000",
   },
   uae: {
     lite: "AED 300 – 500",
