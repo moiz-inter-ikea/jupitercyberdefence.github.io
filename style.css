@@ -263,7 +263,7 @@ main {
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 32px;
 }
 
@@ -757,7 +757,7 @@ main {
 }
 
 .footer-address {
-  text-align: center;
+  text-align: left;
   margin-top: 10px;
   color: var(--text-muted);
   font-size: 13px;
@@ -772,7 +772,7 @@ main {
 
 .compliance-logos {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   margin-top: 10px;
 }
@@ -858,6 +858,11 @@ main {
     padding-left: 16px;
   }
 
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 34px;
@@ -936,12 +941,24 @@ main {
     justify-content: center;
   }
 
+  .footer-address {
+    text-align: left;
+  }
+
+  .compliance-logos {
+    justify-content: flex-start;
+  }
+
   .footer-links {
     justify-content: center;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .pricing-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
