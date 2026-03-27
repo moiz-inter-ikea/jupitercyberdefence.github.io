@@ -147,7 +147,7 @@ main {
 .hero-ascii {
   font-family: var(--font-mono);
   color: var(--accent);
-  font-size: clamp(20px, 4.2vw, 46px);
+  font-size: clamp(28px, 6vw, 64px);
   line-height: 1.15;
   margin-bottom: 24px;
   letter-spacing: 0.12em;
@@ -844,7 +844,7 @@ main {
   }
 
   .hero-ascii {
-    font-size: clamp(16px, 7.2vw, 26px);
+    font-size: clamp(20px, 9vw, 34px);
     line-height: 1.2;
     letter-spacing: 0.08em;
     margin-bottom: 16px;
