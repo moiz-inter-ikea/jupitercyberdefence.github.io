@@ -401,7 +401,7 @@ main {
 /* PRICING */
 .pricing-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -513,7 +513,7 @@ main {
 }
 
 .contact-method .icon {
-  font-size: 16px;
+  font-size: 12px;
 }
 
 /* FORM */
@@ -643,6 +643,10 @@ main {
   .contact-wrapper {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .pricing-wrapper {
+    grid-template-columns: 1fr;
   }
 
   .footer-wrap {
