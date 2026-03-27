@@ -152,6 +152,10 @@ main {
   margin-bottom: 40px;
   letter-spacing: -0.5px;
   text-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
 
 .hero h1 {
@@ -839,6 +843,14 @@ main {
     font-size: 36px;
   }
 
+  .hero-ascii {
+    font-size: 7px;
+    line-height: 1.05;
+    letter-spacing: 0;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(0, 217, 255, 0.15);
+  }
+
   .offensive-box {
     padding: 18px;
   }
@@ -925,20 +937,20 @@ main {
 
   .footer-wrap {
     flex-direction: column;
-    text-align: center;
-    align-items: center;
+    text-align: left;
+    align-items: flex-start;
   }
 
   .footer-branding {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-wrap > ul {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-social {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .footer-address {
@@ -950,7 +962,7 @@ main {
   }
 
   .footer-links {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
