@@ -237,33 +237,37 @@ class ChatBot {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
 
-  submitContactForm(event) {
+  async submitContactForm(event) {
     event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
 
-    // Create hidden form for submission via FormSubmit
-    const hiddenForm = document.createElement('form');
-    hiddenForm.method = 'POST';
-    hiddenForm.action = 'https://formsubmit.co/info@jupitercyberdefence.com';
-    hiddenForm.style.display = 'none';
+    const payload = new FormData();
+    payload.append('_subject', 'New query from Chat Assistant');
+    payload.append('_template', 'table');
+    payload.append('_captcha', 'false');
+    payload.append('name', String(formData.get('name') || ''));
+    payload.append('email', String(formData.get('email') || ''));
+    payload.append('message', String(formData.get('message') || ''));
 
-    hiddenForm.innerHTML = `
-      <input type="hidden" name="_subject" value="New query from Chat Assistant" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="text" name="name" value="${formData.get('name')}" />
-      <input type="email" name="email" value="${formData.get('email')}" />
-      <textarea name="message">${formData.get('message')}</textarea>
-    `;
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@jupitercyberdefence.com', {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
 
-    document.body.appendChild(hiddenForm);
-    hiddenForm.submit();
-    document.body.removeChild(hiddenForm);
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
 
-    // Show success message
-    this.addMessage('✅ Thanks! We\'ve received your message. Our team will reach out shortly.', 'bot');
-    form.reset();
+      this.addMessage('✅ Thanks! We\'ve received your message. Our team will reach out shortly.', 'bot');
+      form.reset();
+    } catch (error) {
+      this.addMessage('We could not send your message right now. Please email us at info@jupitercyberdefence.com.', 'bot');
+    }
   }
 }
 
