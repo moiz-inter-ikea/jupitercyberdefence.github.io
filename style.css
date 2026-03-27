@@ -147,15 +147,15 @@ main {
 .hero-ascii {
   font-family: var(--font-mono);
   color: var(--accent);
-  font-size: 13px;
-  line-height: 1;
-  margin-bottom: 40px;
-  letter-spacing: -0.5px;
+  font-size: clamp(20px, 4.2vw, 46px);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
   text-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-  white-space: pre;
-  overflow-x: auto;
-  overflow-y: hidden;
-  max-width: 100%;
+  white-space: normal;
+  overflow: visible;
+  text-align: center;
 }
 
 .hero h1 {
@@ -844,10 +844,10 @@ main {
   }
 
   .hero-ascii {
-    font-size: 7px;
-    line-height: 1.05;
-    letter-spacing: 0;
-    margin-bottom: 20px;
+    font-size: clamp(16px, 7.2vw, 26px);
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
     text-shadow: 0 0 10px rgba(0, 217, 255, 0.15);
   }
 
