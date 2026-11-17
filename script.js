@@ -104,7 +104,9 @@ const statusEl = document.getElementById("formStatus");
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 if (form instanceof HTMLFormElement && statusEl) {
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (form.getAttribute("aria-busy") === "true") return;
     const requiredFields = form.querySelectorAll("[required]");
     const emailField = form.querySelector('input[name="email"]');
     let hasError = false;
@@ -130,6 +132,33 @@ if (form instanceof HTMLFormElement && statusEl) {
       return;
     }
 
+    const submitButton = form.querySelector('button[type="submit"]');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    form.setAttribute("aria-busy", "true");
+    if (submitButton) submitButton.disabled = true;
     statusEl.textContent = "Sending your request...";
+    try {
+      const response = await fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+        signal: controller.signal,
+      });
+      const result = await response.json();
+      if (!response.ok || ![true, "true"].includes(result?.success)) {
+        throw new Error("Request was not accepted.");
+      }
+      statusEl.textContent = "Your request was accepted. Thank you for contacting JCD.";
+      form.reset();
+    } catch (error) {
+      statusEl.textContent = error.name === "AbortError"
+        ? "Delivery could not be confirmed in time. Email info@jupitercyberdefence.com directly, or retry; retrying may send a duplicate."
+        : "Your request could not be confirmed. Please retry or email info@jupitercyberdefence.com directly.";
+    } finally {
+      clearTimeout(timeout);
+      form.removeAttribute("aria-busy");
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }
